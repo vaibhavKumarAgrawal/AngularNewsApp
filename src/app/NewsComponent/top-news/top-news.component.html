@@ -1,0 +1,49 @@
+
+<div class="top-stories">
+  <div
+    *ngFor="
+      let id of topStoryIds
+      | paginate
+      : {
+          itemsPerPage: tableSize,
+          currentPage: page,
+          totalItems: count
+        };
+
+      let idx = index
+    "
+  >
+    <app-news-view
+      [storyId]="id"
+      [searchTerm]="searchTerm"
+      [index]="setStoryIndex(idx, tableSize, page)"
+    ></app-news-view>
+  </div>
+  <div class="d-flex footer" *ngIf="!searchTerm">
+    <div>
+      <label class="m-4">News per page: </label>
+      <select (change)="onTableSizeChange($event)">
+        <option *ngFor="let size of tableSizes" [selected]="size == 10">
+          {{ size }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <pagination-controls
+        previousLabel="Prev"
+        nextLabel="Next"
+        class="m-2"
+        (pageChange)="onTableDataChange($event)"
+      >
+      </pagination-controls>
+    </div>
+  </div>
+
+  <!-- Added loading spinner -->
+  <!-- <ngx-spinner
+    color="gray"
+    size="medium"
+    bdColor="none"
+    type="ball-spin"
+  ></ngx-spinner> -->
+<!-- </div> -->
