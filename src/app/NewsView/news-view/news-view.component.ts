@@ -1,13 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { InputData } from 'src/app/interface/input-data';
 import { TopNewsServiceService } from 'src/app/services/top-news.service';
 
-interface InputData {
-  by: string;
-  id: number;
-  title: string;
-  type: string;
-  url: string;
-}
+
 
 @Component({
   selector: 'app-news-view',
@@ -20,7 +15,7 @@ export class NewsViewComponent {
   @Input() index: number = 0;
   @Input() searchTerm: string = '';
 
-  //parentSpinner = this.spinner;
+  
   newsData: InputData | null = null;
 
   constructor(
@@ -28,16 +23,14 @@ export class NewsViewComponent {
   ) {}
 
   ngOnInit() {
-    this.getStory();
+    this.getNews();
   }
 
-  getStory() {
-    //this.spinner.show();
-
-    this.topStoryService.getTopStoryById(this.storyId).subscribe((data) => {
+  getNews() {
+    
+    this.topStoryService.getTopNewsById(this.storyId).subscribe((data) => {
       this.newsData = data as InputData;
 
-      //this.spinner.hide();
     });
   }
 

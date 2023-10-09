@@ -10,11 +10,10 @@ export class TopNewsServiceService {
   constructor(private http: HttpClient) { }
 
   getTopNews() {
-    console.log(topStoriesUrl);
     return this.http.get(topStoriesUrl);
   }
 
-  getTopStoryById(storyId: number) {
+  getTopNewsById(storyId: number) {
     return this.http.get(`${itemUrl}/${storyId}.json`);
   }
 }
