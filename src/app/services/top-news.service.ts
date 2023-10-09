@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { topStoriesUrl ,itemUrl} from '../NewsUrl';
+import { Observable } from 'rxjs';
+import { topStoriesUrl, itemUrl } from '../NewsUrl';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,11 @@ export class TopNewsServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getTopNews() {
-    return this.http.get(topStoriesUrl);
+  getTopNews(): Observable<number[]> {
+    return this.http.get<number[]>(topStoriesUrl);
   }
 
-  getTopNewsById(storyId: number) {
+  getTopNewsById(storyId: number): Observable<any> {
     return this.http.get(`${itemUrl}/${storyId}.json`);
   }
 }

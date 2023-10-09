@@ -23,11 +23,10 @@ export class TopNewsComponent implements OnInit {
   }
 
   getNewsIds() {
-   this.topStoryService.getTopNews().subscribe((idsArray) => {
-     this.topStoryIds = idsArray as number[];
+    this.topStoryService.getTopNews().subscribe((idsArray: number[]) => {
+      this.topStoryIds = idsArray;
    });
  }
-
 
   setStoryIndex(index: number, tableSize: number, page: number): number {
     return ((index + 1) % (tableSize + 1)) + tableSize * (page - 1);
